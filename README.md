@@ -14,7 +14,6 @@ Sou **empresário** atuante nas áreas de **documentação digital, impressões 
 
 ## 🚀 Em desenvolvimento:
 - Lançamento de presença digital profissional via **GitHub Pages**
-- Estruturação de um **banco digital privado** via modelo **Banking as a Service (BaaS)**
 - Incorporação de ferramentas de produtividade e organização com foco empresarial
 
 ---
