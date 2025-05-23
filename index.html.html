@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TÁRCIO INFORMÁTICA - Fotocópias, e muito mais.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+            overflow-x: hidden;
+        }
+        header {
+            background: #00264d;
+            color: #fff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header i {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+            font-weight: 400;
+            color: #e0e0e0;
+            animation: fadeIn 2s ease-in-out 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h2 i {
+            margin-right: 0.5rem;
+            color: #007bff;
+        }
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideUp 1s ease-out;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00264d;
+            position: relative;
+        }
+        .section h2::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #007bff;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .section h2:hover::before {
+            transform: scaleX(1);
+        }
+        .item-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: space-between;
+        }
+        .item {
+            background: #e0e0e0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            flex: 1 1 calc(30% - 1.5rem);
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+            perspective: 1000px;
+        }
+        .item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .item i {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #00264d;
+            transition: color 0.3s ease;
+        }
+        .item:hover i {
+            color: #007bff;
+        }
+        .item-title {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+            color: #00264d;
+            font-weight: bold;
+            position: relative;
+        }
+        .item-title::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #007bff;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .item-title:hover::before {
+            transform: scaleX(1);
+        }
+        .item-description {
+            font-size: 1rem;
+            color: #666;
+        }
+        .direitos-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #00264d;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .direitos-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+        .direitos-autorais {
+            font-size: 1.2rem;
+            margin-left: 1rem;
+        }
+        .float-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+        .float-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+        .float-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .agendamento-float {
+            background: #25d366;
+		}
+		.privacidade-float {
+		   background: #007bff
+		}
+        .início-float {
+            background: #007bff;
+		}	
+		.privacy-message {
+            background: #00264d;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .privacy-message p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .privacy-message button {
+            background: #e0e0e0;
+            color: #00264d;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-size: 1rem;
+        }
+        .privacy-message button:hover {
+            background: #ccc;	
+        }
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out;
+        }
+        .loading-screen i {
+            font-size: 4rem;
+            color: #0056b3;
+            margin-bottom: 1rem;
+            animation: spin 2s linear infinite;
+        }
+        .loading-screen p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .auth-code {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .auth-code i {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+        .auth-code .code {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+            color: #333;
+        }
+        .auth-code .timestamp {
+            font-size: 1rem;
+            color: #666;
+        }
+        .faq-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-in-out;
+        }
+        .faq-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00264d;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-size: 1.2rem;
+            color: #00264d;
+            cursor: pointer;
+        }
+        .faq-answer {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <i class="fa-solid fa-microchip"></i>
+        <h1>TÁRCIO INFORMÁTICA</h1>
+    </header>
+
+    <div class="loading-screen" id="loadingScreen">
+        <i class="fa-solid fa-power-off"></i>
+        <p>Tárcio <b>Office</b></p>
+    </div>
+
+    <div class="container">
+        <section class="section">
+            <h2><i class="fa-solid fa-wrench"></i> Nossos Serviços</h2>
+            <div class="item-container">
+                <!-- Existing Services -->
+                <div class="item">
+                    <i class="fas fa-laptop"></i>
+                    <div class="item-title">Suporte Técnico</div>
+                    <div class="item-description">Montagem e Manutenção para computadores.</div>
+					<div class="item-description">Não Realizamos Reparos em Placas, <b>Apenas Manutenção.</b></div>
+                </div>
+                <div class="item">
+                    <i class="fas fa-tools"></i>
+                    <div class="item-title">Instalação de Software</div>
+                    <div class="item-description">Instalação e configuração de softwares, incluindo <b>PDV</b> e <b>DNS.</b></div>
+                </div>
+                <div class="item">
+                    <i class="fas fa-network-wired"></i>
+                    <div class="item-title">Configuração de Rede</div>
+                    <div class="item-description">Configuração de roteadores e redes, incluindo gerenciamento de DNS.</div>
+                </div>
+                <div class="item">
+                    <i class="fas fa-receipt"></i>
+                    <div class="item-title">Criação de Documentos</div>
+                    <div class="item-description">Elaboração de documentos e contratos personalizados.</div>
+                </div>
+                <div class="item">
+                    <i class="fas fa-print"></i>
+                    <div class="item-title">Serviços de Impressão</div>
+                    <div class="item-description">Serviços de impressão e xerox de alta qualidade.</div>
+                </div>
+                <div class="item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="item-title">Consultoria para Compras</div>
+                    <div class="item-description">Orientação para a aquisição de equipamentos e software.</div>
+                </div>
+                <div class="item">
+                    <i class="fa-solid fa-square-phone"></i>
+                    <div class="item-title">Recargas de Celular</div>
+                    <div class="item-description">Recargas para as principais operadoras, via cartão de crédito e de débito.</div>
+                </div>
+                <div class="item">
+                    <i class="fa-brands fa-html5"></i>
+                    <div class="item-title">Desenvolvimento de Software</div>
+                  <div class="item-description">Criação de softwares simples em <b>HTML</b> e <b>BAT.</b></div>
+                </div>
+                <!-- Additional Services -->
+                <div class="item">
+                    <i class="fas fa-users"></i>
+                    <div class="item-title">Agendamentos diversos</div>
+                    <div class="item-description">Agendamentos para <b>RG, vem idoso, carteira de estudante, entre outros.</b></div>
+                </div>
+                <div class="item">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <div class="item-title">Backup de Dados</div>
+                    <div class="item-description">Serviços de backup de dados.</div>
+                </div>
+                <div class="item">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="item-title">Segurança da Informação</div>
+                    <div class="item-description">Consultoria e implementação de medidas de segurança para proteção de dados.</div>
+                </div>
+                <div class="item">
+                    <i class="fas fa-cogs"></i>
+                    <div class="item-title">Manutenção Preventiva</div>
+                    <div class="item-description">Serviços de manutenção preventiva para equipamentos de informática.</div>
+                </div>
+                <div class="item">
+                    <i class="fa-brands fa-linux"></i>
+                    <div class="item-title">Suporte para Linux</div>
+                    <div class="item-description">Suporte para as principais distribuições Linux. <b>Ubuntu, Zorin OS, KDE Plasma, Linux Mint...</b></div>
+                </div>
+                <div class="item">
+                    <i class="fa-solid fa-wifi"></i>
+                    <div class="item-title">Rede Doméstica</div>
+                    <div class="item-description">Instalação e Configuração do <b>KDE CONNECT.</b></div>
+                </div>
+                <div class="item">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <div class="item-title">Boletos e faturas</div>
+                    <div class="item-description"><b>2ª Via</b> de contas de consumo.</div>
+               </div>
+            </div>
+        </section>
+		        <!-- Tecnologias -->
+		<section class="section" id="tecnologias">
+            <h2><i class="fa-solid fa-sitemap"></i> Tecnologias</h2>
+            <div class="item-container">
+                <div class="item">
+                    <i class="fa-solid fa-font-awesome"></i>
+                    <div class="item-title">Font Awesome</div>
+                    <div class="item-description">Biblioteca de ícones versátil, moderna e intuitiva.</div>
+                </div>
+                <div class="item">
+                    <i class="fa-brands fa-cloudflare"></i>
+                    <div class="item-title">Cloudflare</div>
+                    <div class="item-description">Conexões rápidas e seguras com a tecnologia Cloudflare.</div>
+                </div>
+                <div class="item">
+                    <i class="fa-solid fa-shield"></i>
+                    <div class="item-title">Adguard</div>
+                    <div class="item-description">Solução confiável e eficiente para bloqueio de anúncios e proteção online.</div>
+                </div>
+				<div class="item">
+                    <i class="fas fa-pen-fancy"></i>
+                    <div class="item-title">ZapSign</div>
+                    <div class="item-description">Assinatura digital com validade jurídica <b>ICP-Brasil.</b></div>
+                </div>
+				<div class="item">
+                    <i class="fa-solid fa-9"></i>
+                    <div class="item-title">Quad9</div>
+                    <div class="item-description">Serviço de <b>DNS seguro</b> e rápido, protegendo sua navegação contra ameaças online.</div>
+                </div>
+			</div>
+		</section>
+                <!-- Faq Perguntas Frequentes -->		
+        <section class="section faq-section">
+            <h2><i class="fas fa-question-circle"></i> Perguntas Frequentes</h2>
+            <div class="faq-item">
+                <div class="faq-question">Vocês também são à <b>KASYEKUN EMPREENDIMENTOS?</b></div>
+                <div class="faq-answer">Sim, somos o mesmo negócio. <b>Á KASYEKUN EMPREENDIMENTOS É A NOSSA MARCA REGISTRADA.</b></div>
+                <div class="faq-answer">Saíba mais e confira avaliações reais de <b>NOSSOS CLIENTES</b> no <a href="https://g.page/r/CbbiEbWBTmeHEBM/review" target="_blank">google.</a></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Como posso entrar em contato com o suporte?</div>
+                <div class="faq-answer">Você pode entrar em contato conosco através dos nosso canal de agendamento oficial.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Onde a empresa está localizada?</div>
+                <div class="faq-answer">Nosso escritório está localizado no endereço <b> Loteamento Conceição, Paulista / PE.</b></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Quais são os horários de atendimento?</div>
+                <div class="faq-answer">Nosso atendimento é de <b>segunda a sexta-feira, das 09:00h às 17:00h. Sábado e Domingo (Fechado).</b></div>
+                <div class="faq-answer"><b>Não realizamos atendimentos em feriados nacionais.</b></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Vocês oferecem suporte remoto?</div>
+                <div class="faq-answer">Sim, oferecemos suporte remoto para a resolução de problemas de <b>softwares aplicativos.</b></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Como posso solicitar um serviço?</div>
+                <div class="faq-answer">Você pode solicitar nossos serviços entrando em contato diretamente através do nosso canal de <a href="https://agendamento.tarcioinformatica.com.br" target="_blank"> agendamento.</a></div>
+				<div class="faq-answer">Realizamos atendimentos somente em <b> Paulista / PE.</b> Não agendamos por <b>E-mail.</b></div>
+            </div>
+			<div class="faq-item">
+                <div class="faq-question">Relatório de impacto ambiental</div>
+                <div class="faq-answer">Nossa empresa tem contribuído na preservação do meio ambiente ao reduzir a quantidade de papel impresso nos processos da empresa.</div>
+                <div class="faq-answer"><a href="https://app.zapsign.com.br/verificar/sustentabilidade/tarcioinformatica" target="_blank"> Certificado de Empresa Sustentável.</a></div>
+		
+		</section>
+
+        <div class="auth-code">
+            <i class="fa-solid fa-lock"></i>
+            <p>Código de Autenticidade:</p>
+            <div class="code" id="authCode">ABCD-1234-EFGH-5678</div>
+            <p class="timestamp">Data e Hora: <span id="timestamp"></span></p>
+        </div>
+        
+        <section class="direitos-container">
+            <i class="fa-solid fa-copyright"></i>
+            <div class="direitos-autorais"> 2025 <b>TARCIO OFFICE</b> - TODOS OS DIREITOS RESERVADOS.</div>
+        </section>
+    </div>
+
+    <div class="float-buttons">
+        <a href="https://agendamento.tarcioinformatica.com.br" class="float-button agendamento-float" target="_blank" title="Agendamento">
+            <i class="fa-solid fa-ticket"></i>
+        </a>
+		<a href="https://privacidade.tarcioinformatica.com.br" class="float-button privacidade-float" target="_blank" title="Privacidade">
+            <i class="fa-solid fa-file-lines"></i>
+		</a>
+		<a href="https://www.tarcioinformatica.com.br" class="float-button início-float" target="" title="Início">
+		    <i class="fa-solid fa-house"></i>
+		</a>	
+    </div>
+    <div class="privacy-message">
+	    <h3><i class="fa-solid fa-user-lock"></i> Sua Privacidade é Importante</h3>
+        <p>Ao continuar navegando em nosso site e utilizando nossos serviços, você concorda com nossa</p> 
+		<p><b>Política de Privacidade e Termos e Condiçoes Gerais.</b></p>
+        <button onclick="this.parentElement.style.display='none'"><b>OK</b></button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const timestampElement = document.getElementById('timestamp');
+            const authCodeElement = document.getElementById('authCode');
+            const now = new Date();
+            const timestamp = `${now.toISOString().split('T')[0]} ${now.toTimeString().split(' ')[0]}`;
+            timestampElement.textContent = timestamp;
+
+            // Generate a random alphanumeric code
+            const generateAuthCode = () => {
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                let code = '';
+                for (let i = 0; i < 16; i++) {
+                    code += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return code.match(/.{1,4}/g).join('-');
+            };
+
+            authCodeElement.textContent = generateAuthCode();
+
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 3000); // Hide loading screen after 3 seconds
+
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    question.parentElement.classList.toggle('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
